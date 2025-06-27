@@ -12,7 +12,7 @@ pnpm-debug.log*
 # Build output
 dist/
 build/
-frontend/build/
+# frontend/build/
 
 # Runtime files
 *.log
