@@ -1,8 +1,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { logEvent } = require('../../Logging-Middleware/LoggingService');
-const urlMap = require('./urlStorage.js');
+const { logEvent } = require('../../logging-middleware/LoggingService');
+const urlMap = require('./urlStorage');
 
 function generateRandomCode(length = 6) {
   return Math.random().toString(36).substr(2, length);
@@ -49,27 +49,4 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-router.get('/:shortcode', async (req, res) => {
-  const { shortcode } = req.params;
-
-  if (!urlMap.has(shortcode)) {
-    await logEvent("backend", "warn", "route", `Shortcode not found: ${shortcode}`);
-    return res.status(404).send("Short URL not found");
-  }
-
-  const data = urlMap.get(shortcode);
-  const now = new Date();
-
-  if (now > data.expiry) {
-    await logEvent("backend", "info", "route", `Shortcode expired: ${shortcode}`);
-    return res.status(410).send("Short URL expired");
-  }
-
-  data.clickCount++;
-  data.clicks.push({ time: now, referrer: req.get('referer') || 'direct' });
-
-  await logEvent("backend", "info", "route", `Redirecting from ${shortcode} to ${data.originalUrl}`);
-
-  res.redirect(data.originalUrl);
-});
 
