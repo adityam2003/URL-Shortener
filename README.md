@@ -2,9 +2,6 @@
 
 This project is a URL shortener backend built with Node.js and Express.
 
-## 👤 Student ID
-**22131011150**
-
 ## 📸 Screenshots
 
 ### Screenshot 1
@@ -14,8 +11,8 @@ This project is a URL shortener backend built with Node.js and Express.
 <img width="1468" alt="Screenshot 2025-06-27 at 4 53 13 PM" src="https://github.com/user-attachments/assets/c520bf2a-82db-4489-b306-362a10ef7667" />
 
 ## 🏗️ Project Architecture:
-
-📦 22SCSE1011135
+<pre>
+📦 URL-Shortener
 ├── backend
 │ ├── index.js # Express server entry point
 │ ├── routes
@@ -36,3 +33,4 @@ This project is a URL shortener backend built with Node.js and Express.
 ├── .gitignore # Ignored files/folders
 ├── README.md # Project documentation
 ├── package.json / lock.json # Dependencies for root or shared setup
+</pre>
